@@ -1,0 +1,75 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--menu-color);
+    padding: 10px 20px;
+}
+
+.navbar h1{
+    color: var(--title-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.menu a{
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.menu a:hover{
+    text-decoration: underline;
+}
+
+.menu-dropdown{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 100%;
+    right: 0;
+    background-color: var(--menu-color);
+    border: 1px solid var(--text-color);
+    z-index: 1000;
+}
+
+.theme-btn{
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.profile{
+    background-color: transparent;
+    border: var(--text-color);
+    border-radius: 50%;
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.menu-btn{
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.menu-btn:hover{
+    background-color: var(--bg-color);
+}

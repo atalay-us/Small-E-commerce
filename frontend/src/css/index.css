@@ -1,0 +1,29 @@
+:root{
+    --text-color:black;
+    --title-color:rgb(255, 255, 255);
+    --bg-color:#F8F6F4;
+    --menu-color:#C4DFDF;
+    --btn-color:#D2E9E9;
+    --btn-hover:#D2E9E9;
+}
+
+[data-theme="dark"]{
+    --text-color:white;
+    --title-color:white;
+    --bg-color:#1A1A1A;
+    --menu-color:#2C3E50;
+    --btn-color:#34495E;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}

@@ -9,6 +9,10 @@ export const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
+        if(!username || !email || !password){
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
         const existingUsername = await User.findOne({ username });
         if (existingUsername) {
             return res.status(400).json({ error: "Username already exists" });
@@ -54,6 +58,10 @@ export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
+        if (!username || !password) {
+            return res.status(400).json({ error: "Username and password are required" });
+        }
+
         const user = await User.findOne({ username });
         if (!user) {
             return res.status(400).json({ error: "Invalid username or password" });
@@ -96,12 +104,11 @@ export const checkAuth = async (req, res) => {
             return res.status(404).json({ error: "User not found." });
         }
 
-        const showUser = {
-            username: user.username,
-            email: user.email,
-            role: user.role,
-        };
-
+         const showUser = {
+            ...user._doc,
+            password: undefined
+        }
+        
         res.status(201).json({ message: "User logged in successfully", user: showUser });
     } catch (error) {
         console.error(`CheckAuth function error: ${error}`);

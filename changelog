@@ -1,0 +1,60 @@
+# Changelog
+0.1: Project initialized with backend setup, authentication routes, and control functions, tested using Postman
+  - Project setup:
+    - Frontend: React.js
+    - Backend: Node.js
+    - Database: MongoDB
+    - Image sharing and storage: Cloudinary
+  - Backend dependencies:
+    - Express: For server communication
+    - Mongoose: For database operations
+    - JSONWebToken: For authentication
+    - Bcrypt: For password encryption
+    - Cloudinary: For image upload operations
+    - Cookie-parser: For cookie management
+    - Dotenv: For storing environment variables
+    - CORS: For frontend-backend communication
+  - Authentication routes:
+    - User model created with fields: email, username, password, profileImg, role
+    - Users can register at "/api/auth/register" by providing username, email, and password
+      - Username and email fields are set to be unique
+      - Password field requires a minimum of 6 characters
+    - Users can log in at "/api/auth/login" using username and password
+    - Users can log out at "/api/auth/logout" to clear existing cookies
+    - A verify-token middleware function is used for the "/api/auth/check-auth" route
+      - The middleware verifies and decodes the token stored in a cookie
+      - The decoded userId is stored in req.userId
+      - The check-auth route uses req.userId to find the user and return their information
+    - Data from "/api/auth/check-auth" will be used on the frontend to restrict user actions
+
+0.2: Login, Register, and Homepage pages with Navbar added for Frontend, Profile route added for Backend
+  - Frontend dependencies:
+    - react-icons: For icon components
+    - @tanstack/react-query: For state management
+    - axios: For HTTP requests
+    - react-router-dom: For page navigation and routing
+  - Homepage:
+    - Users visiting "/" are greeted with a welcome message.
+    - Logged-in users see "Welcome {username}", while non-logged-in users see "Welcome to the Homepage!".
+  - Navbar:
+    - Clicking the logo (E-COMMERCE) redirects users to the "/" (homepage).
+    - A theme toggle button allows users to switch between light and dark themes.
+    - Theme preference is stored in `localStorage`, preserving the last selected theme when the site is reopened.
+    - Non-logged-in users see a "Login" link in the navbar, redirecting to "/login".
+    - Logged-in users see a profile icon button (default: `<FaRegUserCircle />`).
+      - Note: Code will be added to display the user’s uploaded profile picture instead of the icon.
+    - Clicking the profile button opens a dropdown menu (`menu-dropdown`) with "Profile" and "Logout" buttons.
+    - The dropdown closes when clicking outside, or on the "Profile" or "Logout" buttons.
+    - Clicking the "Profile" button currently logs "Profile button clicked" to the console.
+    - Clicking the "Logout" button logs the user out, clears the `token` cookie, and redirects to "/login".
+  - Login/Register:
+    - Users can log in at "/login" using username and password.
+    - Users can register at "/register" using username, email, and password.
+    - Form handling is managed with React and communicates with the backend via axios.
+  - Profile Route:
+    - Backend route (`/api/auth/profile`) added for updating user profile information.
+    - Frontend "/profile" page is pending; users will later update profile details and upload profile pictures here.
+  - CSS:
+    - Styles (`navbar.css`) added for the navbar to ensure proper placement of logo, menu items, and dropdown.
+    - Styles (`lr-form.css`) added for Login/Register pages to style form overlays and inputs.
+    - Theme switching uses CSS variables (`index.css`) to support light/dark modes.

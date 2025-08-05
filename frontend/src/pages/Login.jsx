@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../css/lr-form.css"
 
 const Login = () => {
-    const [formData, setFormData] = useState({ username: "", password: "" });
+    const [formData, setFormData] = useState({ email: "", password: "" });
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
@@ -39,8 +39,8 @@ const Login = () => {
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                        <label>Email</label>
+                        <input type="text" name="email" value={formData.username} onChange={handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Password</label>

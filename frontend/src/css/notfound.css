@@ -1,0 +1,38 @@
+.not-found-overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+}
+
+.not-found-container{
+    text-align: center;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    padding: 20px;
+    background-color: var(--menu-color);
+    height: 250px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-container p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+.not-found-container a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.not-found-container a:hover{
+    text-decoration: underline;
+}

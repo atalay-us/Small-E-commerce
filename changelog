@@ -58,3 +58,33 @@
     - Styles (`navbar.css`) added for the navbar to ensure proper placement of logo, menu items, and dropdown.
     - Styles (`lr-form.css`) added for Login/Register pages to style form overlays and inputs.
     - Theme switching uses CSS variables (`index.css`) to support light/dark modes.
+
+0.3: Profile Page, 404 Page, and Backend Route Updates
+- Project Name Change:
+  - Changed project name from "Small E-commerce" to "Store-Img"
+  - Reason: 
+      - Challenges with Cloudinary image storage led to a focus on image storage and removal functionality to improve Cloudinary expertise
+      - Cloudinary supports two image storage methods:
+      - Frontend uploads images to Cloudinary, and the backend stores the resulting URL
+      - Frontend sends images to the backend, which handles Cloudinary uploads
+      - Chose the second method (backend handling uploads) due to difficulties with the first, though this increases backend load
+      - Becuse of this project scope shifted to focus solely on image storage and removal
+- Backend Updates:
+  - Updated /api/auth/login route to accept email instead of username for login
+  - Updated verify-token middleware:
+    - Previously stored only the decoded userId
+    - Now checks if a user exists for the decoded userId, stores the full user object in req.user, and returns an appropriate error if the user is not found
+  - Updated /api/auth/check-auth route to work with the updated verify-token middleware
+  - Updated /api/profile/change-user-info/:id route to handle user information updates
+  - Added /api/profile/change-profile-img/:id route for uploading profile images using Cloudinary
+  - Ensured that /api/profile/change-user-info/:id and /api/profile/change-profile-img/:id routes restrict users to updating only their own information
+  - Removed the role field from the user model
+- Frontend Updates:
+  - Added Profile page (/profile):
+    - Users can update their profile information (username, password) or upload/change their profile image
+  - Added 404 Not Found page:
+    - Displayed when users access invalid routes
+  - Updated Login page to prompt for email instead of username
+  - Added CSS for Profile and 404 Not Found pages
+  - Updated Navbar:
+    - Profile icon now displays the user’s profile image if available, falling back to a default avatar (/avatar.png) if no profile image exists

@@ -44,7 +44,6 @@ export const register = async (req, res) => {
         const showUser = {
             username: newUser.username,
             email: newUser.email,
-            role: newUser.role,
         };
 
         res.status(201).json({ message: "User registered successfully", user: showUser });
@@ -56,20 +55,20 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
-        if (!username || !password) {
+        if (!email || !password) {
             return res.status(400).json({ error: "Username and password are required" });
         }
 
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: "Invalid username or password" });
+            return res.status(400).json({ error: "Invalid email or password" });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(400).json({ error: "Invalid username or password" });
+            return res.status(400).json({ error: "Invalid email or password" });
         }
 
         generateTokenAndSetCookie(res, user._id);
@@ -77,7 +76,6 @@ export const login = async (req, res) => {
         const showUser = {
             username: user.username,
             email: user.email,
-            role: user.role,
         };
 
         res.status(201).json({ message: "User logged in successfully", user: showUser });
@@ -99,17 +97,14 @@ export const logout = async (req, res) => {
 
 export const checkAuth = async (req, res) => {
     try {
-        const user = await User.findById(req.userId);
-        if (!user) {
-            return res.status(404).json({ error: "User not found." });
-        }
+        const user = req.user;
 
-         const showUser = {
+        const showUser = {
             ...user._doc,
-            password: undefined
+            password:undefined
         }
         
-        res.status(201).json({ message: "User logged in successfully", user: showUser });
+        res.status(201).json({ user: showUser });
     } catch (error) {
         console.error(`CheckAuth function error: ${error}`);
         res.status(500).json({ error: "Internal server error" });

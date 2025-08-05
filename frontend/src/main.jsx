@@ -7,8 +7,10 @@ import { BrowserRouter } from "react-router-dom"
 import App from './App.jsx'
 
 import "./css/index.css"
+import "./css/notfound.css"
 import "./css/navbar.css"
 import "./css/lr-form.css"
+import "./css/profilepage.css"
 
 const queryClient = new QueryClient();
 

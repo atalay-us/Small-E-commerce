@@ -12,8 +12,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" })); 
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 app.use(cors({
     origin: "http://localhost:5173",
@@ -22,7 +22,7 @@ app.use(cors({
 
 app.use("/api/auth", authRoutes);
 
-app.use("/api/profile",profileRoutes);
+app.use("/api/profile", profileRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on link http://localhost:${port}`);

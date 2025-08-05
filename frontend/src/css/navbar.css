@@ -51,14 +51,10 @@
     margin: 0 20px;
 }
 
-.profile{
-    background-color: transparent;
-    border: var(--text-color);
+.navbar-profile-pic{
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    color: var(--text-color);
-    font-size: 2rem;
-    cursor: pointer;
-    margin-left: 20px;
 }
 
 .menu-btn{

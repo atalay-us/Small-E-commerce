@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const { data: user } = useQuery({
@@ -27,8 +29,10 @@ function App() {
       <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Homepage user={user} />} />
-        <Route path="/login"element={user ? <Homepage user={user} /> : <Login />} />
+        <Route path="/login" element={user ? <Homepage user={user} /> : <Login />} />
         <Route path="/register" element={user ? <Homepage user={user} /> : <Register />} />
+        <Route path="/profile" element={user ? <Profile user={user} /> : <Login />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </>
   )

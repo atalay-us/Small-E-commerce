@@ -53,15 +53,16 @@ const Navbar = ({ user }) => {
 
   return (
     <nav className='navbar'>
-      <h1 onClick={() => navigate("/")}>E-COMMERCE</h1>
+      <h1 onClick={() => navigate("/")}>Store-Img</h1>
       <div className="menu">
         <button onClick={toggleTheme} className="theme-btn">{theme === "dark" ? <MdDarkMode /> : <MdLightMode />}</button>
         {!user ?
           <Link to={"/login"}>Login</Link> :
-          <button onClick={() => setShowMenu(!showMenu)} className="profile"><FaRegUserCircle /></button>}
+          <img src={user.profileImg || "/avatar.png"} alt="navbar-profile-pic" onClick={()=>setShowMenu(!showMenu) } className="navbar-profile-pic" />
+        }
         {showMenu &&
           <div className="menu-dropdown" ref={menuRef}>
-            <button onClick={() => { console.log("Profile button clicked"); setShowMenu(false); }} className="menu-btn">Profile</button>
+            <button onClick={() => { navigate("/profile"); setShowMenu(false); }} className="menu-btn">Profile</button>
             <button onClick={() => logoutMutation.mutate()} className="menu-btn">Logout</button>
           </div>}
       </div>
